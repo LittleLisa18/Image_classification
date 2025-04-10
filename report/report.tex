@@ -1,0 +1,108 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{left = 4.0cm, right = 4.0cm, top = 4.0cm, bottom = 3.5cm}
+\usepackage[onehalfspacing]{setspace} 
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{float} 
+\usepackage{ragged2e} %%blocksatz \justifing
+\usepackage{minted}
+\usepackage[english]{babel} % 将语言改为英文
+\usepackage[babel,english=american]{csquotes} % 设置英文引号样式
+\usepackage[backend=biber, style=apa]{biblatex} 
+\newcommand{\showfontsize}{{\f@size pt}}
+% \addbibresource{literature.bib}
+\setlength{\bibitemsep}{1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{COMP3314 Assignment 3 Report}
+\author{XXX}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+TBD
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dataset Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Dataset Analysis}
+TBD
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Image Preprocessing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Image Preprocessing}
+TBD
+
+\subsection{Image Resizing}
+TBD
+
+\subsection{Feature Extraction}
+TBD
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Model Training
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model Training}
+TBD
+
+\subsection{Model 1}
+TBD
+
+\subsection{Model 2}
+TBD
+
+\subsection{Model 3}
+TBD
+
+% Python code example
+\begin{listing}[!ht]
+\begin{minted}{python}
+def add(x,y):
+    res = x + y
+    printf("{x} + {y} = {res}")
+    return res
+
+x = 3
+y = 2
+r = add(x,y)
+print(r)
+\end{minted}
+\caption{Python sample code}
+\label{listing:python}
+\end{listing}
+
+% Image example
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{./img/nailong.jpg}
+    \caption[nailong] {woshinailong}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+TBD
+
+\end{document}

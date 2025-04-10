@@ -1,0 +1,26 @@
+# LaTeX intermediate and output files
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.bcf
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.run.xml
+
+# Temporary files
+*.tmp
+*.bak
+*.dvi
+
+
+# Editor-specific files
+.vscode/
+_minted-report/
+*.swp
