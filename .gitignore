@@ -24,3 +24,6 @@
 .vscode/
 _minted-report/
 *.swp
+
+# ignore np array
+*.npy
