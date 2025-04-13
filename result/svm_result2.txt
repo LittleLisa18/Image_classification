@@ -1,0 +1,21 @@
+HOG features shape: (4000,)
+EOG features shape: (8192,)
+ORB features shape: (2000,)
+HIST features shape: (512,)
+SIFT features shape: (128,)
+
+SVM Validation Accuracy: 0.6948
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.78      0.76      0.77      1011
+           1       0.79      0.82      0.80      1051
+           2       0.60      0.56      0.58       985
+           3       0.50      0.45      0.47       983
+           4       0.58      0.67      0.62       968
+           5       0.59      0.55      0.57       975
+           6       0.74      0.78      0.76      1022
+...
+    accuracy                           0.69     10000
+   macro avg       0.69      0.69      0.69     10000
+weighted avg       0.69      0.69      0.69     10000
