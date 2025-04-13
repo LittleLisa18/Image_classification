@@ -1,0 +1,38 @@
+# HOG features shape: (8100,)
+# EOG features shape: (8192,)
+# ORB features shape: (8000,)
+# HIST features shape: (512,)
+# SIFT features shape: (128,)
+
+           im_name  label
+0      000231c.jpg      2
+1      0002574.jpg      5
+2      00027d5.jpg      7
+3      000304e.jpg      3
+4      00047fc.jpg      7
+...            ...    ...
+49995  d507197.jpg      5
+49996  d508429.jpg      1
+49997  d508cb7.jpg      9
+49998  d509167.jpg      3
+49999  d509c42.jpg      3
+
+[50000 rows x 2 columns]
+SVM Validation Accuracy: 0.6513
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.71      0.73      0.72      1011
+           1       0.77      0.80      0.78      1051
+           2       0.55      0.52      0.53       985
+           3       0.45      0.41      0.43       983
+           4       0.54      0.62      0.58       968
+           5       0.55      0.53      0.54       975
+           6       0.69      0.71      0.70      1022
+           7       0.71      0.71      0.71       987
+           8       0.75      0.73      0.74       996
+           9       0.77      0.73      0.75      1022
+
+    accuracy                           0.65     10000
+   macro avg       0.65      0.65      0.65     10000
+weighted avg       0.65      0.65      0.65     10000
