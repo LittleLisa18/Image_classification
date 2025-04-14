@@ -1,9 +1,15 @@
+X_train_featured = np.load("../data/nparrays/X_train_features4.npy")
+X_val_featured = np.load("../data/nparrays/X_val_features4.npy")
+
 HOG features shape: (12000,) RGB
 EOG features shape: (2048,)
 ORB features shape: (2000,)
 HIST features shape: (512,)
 SIFT features shape: (128,)
 
+n_components = 0.75 C = 8
+
+SEED = 42
 SVM Validation Accuracy: 0.7535
 Classification Report:
               precision    recall  f1-score   support
@@ -20,3 +26,114 @@ Classification Report:
    macro avg       0.75      0.75      0.75     10000
 weighted avg       0.75      0.75      0.75     10000
 
+SEED = 43
+SVM Validation Accuracy: 0.7488
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.78      0.78      0.78      1011
+           1       0.86      0.87      0.87      1003
+           2       0.64      0.68      0.66       986
+           3       0.54      0.55      0.55       962
+           4       0.71      0.69      0.70       999
+           5       0.67      0.64      0.66      1017
+           6       0.81      0.82      0.81       992
+           7       0.80      0.76      0.78      1008
+           8       0.82      0.85      0.84      1005
+           9       0.85      0.83      0.84      1017
+
+    accuracy                           0.75     10000
+   macro avg       0.75      0.75      0.75     10000
+weighted avg       0.75      0.75      0.75     10000
+
+######################################################
+# FINE TUNING
+######################################################
+
+n_components = 300 C = 8
+SVM Validation Accuracy: 0.7484
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.78      0.81      0.79      1011
+           1       0.87      0.85      0.86      1051
+           2       0.63      0.65      0.64       985
+           3       0.53      0.55      0.54       983
+           4       0.68      0.72      0.70       968
+           5       0.64      0.61      0.63       975
+           6       0.82      0.80      0.81      1022
+...
+    accuracy                           0.75     10000
+   macro avg       0.75      0.75      0.75     10000
+weighted avg       0.75      0.75      0.75     10000
+
+n_components = 300 C = 10
+SVM Validation Accuracy: 0.7484
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.78      0.81      0.79      1011
+           1       0.87      0.85      0.86      1051
+           2       0.63      0.65      0.64       985
+           3       0.53      0.55      0.54       983
+           4       0.68      0.72      0.70       968
+           5       0.64      0.61      0.63       975
+           6       0.82      0.80      0.81      1022
+...
+    accuracy                           0.75     10000
+   macro avg       0.75      0.75      0.75     10000
+weighted avg       0.75      0.75      0.75     10000
+
+n_components = 300 C = 5
+SVM Validation Accuracy: 0.7480
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.77      0.81      0.79      1011
+           1       0.87      0.86      0.86      1051
+           2       0.64      0.65      0.64       985
+           3       0.53      0.55      0.54       983
+           4       0.68      0.72      0.70       968
+           5       0.64      0.61      0.62       975
+           6       0.81      0.80      0.81      1022
+...
+    accuracy                           0.75     10000
+   macro avg       0.75      0.75      0.75     10000
+weighted avg       0.75      0.75      0.75     10000
+
+n_components = 400 C = 8
+SVM Validation Accuracy: 0.7532
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.78      0.82      0.80      1011
+           1       0.87      0.86      0.86      1051
+           2       0.65      0.66      0.65       985
+           3       0.55      0.56      0.55       983
+           4       0.68      0.72      0.70       968
+           5       0.64      0.61      0.62       975
+           6       0.82      0.81      0.81      1022
+...
+    accuracy                           0.75     10000
+   macro avg       0.75      0.75      0.75     10000
+weighted avg       0.75      0.75      0.75     10000
+
+n_components = 500 C = 8
+SVM Validation Accuracy: 0.7563
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.79      0.83      0.81      1011
+           1       0.87      0.86      0.87      1051
+           2       0.65      0.66      0.65       985
+           3       0.55      0.56      0.56       983
+           4       0.68      0.73      0.70       968
+           5       0.64      0.62      0.63       975
+           6       0.82      0.81      0.82      1022
+           7       0.84      0.80      0.82       987
+           8       0.84      0.85      0.85       996
+           9       0.86      0.84      0.85      1022
+
+    accuracy                           0.76     10000
+   macro avg       0.76      0.75      0.75     10000
+weighted avg       0.76      0.76      0.76     10000
