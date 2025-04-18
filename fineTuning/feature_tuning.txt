@@ -1,5 +1,6 @@
 PCA n_components=0.75 
 SVC C=9, kernel='rbf', gamma='scale'
+p = 0.1
 
 ------------------------------------------------------
 Add LBP (32, 32)
@@ -134,3 +135,216 @@ Classification Report:
    macro avg       0.76      0.76      0.76     10000
 weighted avg       0.77      0.77      0.76     10000
 -----------------------------------------------------
+p = 0.07
+Delete ORB 
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (512,)
+SVM Validation Accuracy: 0.7806
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.84      0.82      1011
+           1       0.90      0.87      0.89      1051
+           2       0.68      0.71      0.69       985
+           3       0.57      0.58      0.58       983
+           4       0.74      0.75      0.74       968
+           5       0.69      0.64      0.66       975
+           6       0.84      0.83      0.83      1022
+           7       0.86      0.82      0.84       987
+           8       0.85      0.88      0.86       996
+           9       0.87      0.86      0.87      1022
+
+    accuracy                           0.78     10000
+   macro avg       0.78      0.78      0.78     10000
+weighted avg       0.78      0.78      0.78     10000
+
+p = 0.07 Original ORB 64*64
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+ORB features shape: (2000,)
+HIST features shape: (512,)
+SVM Validation Accuracy: 0.7807
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.84      0.82      1011
+           1       0.90      0.87      0.89      1051
+           2       0.68      0.71      0.69       985
+           3       0.58      0.59      0.58       983
+           4       0.74      0.75      0.74       968
+           5       0.69      0.64      0.66       975
+           6       0.84      0.83      0.83      1022
+           7       0.86      0.82      0.84       987
+           8       0.85      0.88      0.86       996
+           9       0.87      0.87      0.87      1022
+
+    accuracy                           0.78     10000
+   macro avg       0.78      0.78      0.78     10000
+weighted avg       0.78      0.78      0.78     10000
+
+p = 0.07 Original ORB 256*256
+SVM Validation Accuracy: 0.7789
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.84      0.82      1011
+           1       0.90      0.88      0.89      1051
+           2       0.68      0.70      0.69       985
+           3       0.57      0.58      0.58       983
+           4       0.73      0.76      0.74       968
+           5       0.69      0.64      0.67       975
+           6       0.83      0.82      0.82      1022
+           7       0.85      0.81      0.83       987
+           8       0.85      0.88      0.86       996
+           9       0.87      0.87      0.87      1022
+
+    accuracy                           0.78     10000
+   macro avg       0.78      0.78      0.78     10000
+weighted avg       0.78      0.78      0.78     10000
+
+
+-----------------------------------------------------
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+Remove HIST(64, 64)
+SVM Validation Accuracy: 0.7732
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.83      0.81      1011
+           1       0.89      0.87      0.88      1051
+           2       0.67      0.70      0.69       985
+           3       0.56      0.57      0.56       983
+           4       0.73      0.74      0.74       968
+           5       0.68      0.65      0.66       975
+           6       0.83      0.82      0.83      1022
+           7       0.86      0.82      0.84       987
+           8       0.84      0.87      0.86       996
+           9       0.87      0.86      0.86      1022
+
+    accuracy                           0.77     10000
+   macro avg       0.77      0.77      0.77     10000
+weighted avg       0.77      0.77      0.77     10000
+
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (512,)
+HIST(64, 64) INTER_LINEAR->INTER_CUBIC
+SVM Validation Accuracy: 0.7801
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.84      0.82      1011
+           1       0.90      0.88      0.89      1051
+           2       0.68      0.71      0.69       985
+           3       0.57      0.58      0.58       983
+           4       0.73      0.75      0.74       968
+           5       0.68      0.65      0.66       975
+           6       0.84      0.83      0.83      1022
+           7       0.86      0.82      0.84       987
+           8       0.85      0.88      0.86       996
+           9       0.87      0.87      0.87      1022
+
+    accuracy                           0.78     10000
+   macro avg       0.78      0.78      0.78     10000
+weighted avg       0.78      0.78      0.78     10000
+
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (512,)
+HIST(256, 256) INTER_LINEAR
+SVM Validation Accuracy: 0.7799
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.84      0.82      1011
+           1       0.90      0.87      0.89      1051
+           2       0.68      0.71      0.69       985
+           3       0.57      0.58      0.58       983
+           4       0.74      0.75      0.74       968
+           5       0.68      0.64      0.66       975
+           6       0.84      0.83      0.83      1022
+           7       0.86      0.82      0.84       987
+           8       0.85      0.88      0.86       996
+           9       0.87      0.86      0.87      1022
+
+    accuracy                           0.78     10000
+   macro avg       0.78      0.78      0.78     10000
+weighted avg       0.78      0.78      0.78     10000
+
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (4096,)
+HIST(256, 256) INTER_LINEAR
+
+-------------------------------------------------------
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (512,)
+LBP features shape: (4096,) uniform
+SVM Validation Accuracy: 0.7702
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.79      0.84      0.81      1011
+           1       0.89      0.87      0.88      1051
+           2       0.68      0.68      0.68       985
+           3       0.57      0.57      0.57       983
+           4       0.70      0.74      0.72       968
+           5       0.67      0.63      0.65       975
+           6       0.82      0.82      0.82      1022
+           7       0.85      0.80      0.83       987
+           8       0.84      0.87      0.86       996
+           9       0.87      0.86      0.87      1022
+
+    accuracy                           0.77     10000
+   macro avg       0.77      0.77      0.77     10000
+weighted avg       0.77      0.77      0.77     10000
+
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (512,)
+LBP features shape: (4096,) default
+SVM Validation Accuracy: 0.7668
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.78      0.83      0.80      1011
+           1       0.87      0.87      0.87      1051
+           2       0.66      0.67      0.67       985
+           3       0.57      0.58      0.58       983
+           4       0.71      0.74      0.72       968
+           5       0.68      0.62      0.65       975
+           6       0.83      0.82      0.82      1022
+           7       0.84      0.81      0.83       987
+           8       0.84      0.87      0.85       996
+           9       0.87      0.84      0.86      1022
+
+    accuracy                           0.77     10000
+   macro avg       0.77      0.77      0.76     10000
+weighted avg       0.77      0.77      0.77     10000
+
+--------------------------------------------------------
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (512,)
+HSV features shape: (512,)
+SVM Validation Accuracy: 0.7876
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.81      0.86      0.83      1011
+           1       0.91      0.89      0.90      1051
+           2       0.69      0.71      0.70       985
+           3       0.59      0.60      0.60       983
+           4       0.73      0.76      0.74       968
+           5       0.69      0.66      0.67       975
+           6       0.86      0.83      0.84      1022
+           7       0.86      0.81      0.84       987
+           8       0.85      0.88      0.86       996
+           9       0.88      0.87      0.87      1022
+
+    accuracy                           0.79     10000
+   macro avg       0.79      0.79      0.79     10000
+weighted avg       0.79      0.79      0.79     10000
