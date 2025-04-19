@@ -69,6 +69,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Abstract}
 
+This task focuses on developing a machine learning classification model to accurately categorize CIFAR-10 images into their respective 10 classes. Our methodology incorporates comprehensive data augmentation techniques including horizontal flipping, four-corner plus center cropping, supplemented with random cropping, random rotation, and random color adjustment operations. For feature extraction, we implemented four distinct algorithms: Histogram of Oriented Gradients (HOG) for shape characterization, Edge Orientation Histograms (EOG) for boundary detection, Color Histograms (HIST) for chromatic distribution analysis, Hue-Saturation-Value (HSV) color space transformation for enhanced color feature representation. The processed feature vectors were subsequently normalized using Standard Scaler and underwent dimensionality reduction through Principal Component Analysis (PCA). These preprocessed features served as input to our Support Vector Machine (SVM) classifier. Our approach achieved a competitive accuracy score of 0.8010 on the Kaggle competition public leaderboard, demonstrating the effectiveness of our feature engineering pipeline and model architecture.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dataset Analysis
@@ -108,7 +109,7 @@ X_test, y_test = np.array(X_test), np.array(y_test)
 X_train_flatten = X_train.reshape(X_train.shape[0], -1)
 X_test_flatten = X_test.reshape(X_test.shape[0], -1)
 \end{minted}
-\caption{Load Data}
+% \caption{Load Data}
 \label{listing:python}
 \end{listing}
 
@@ -125,7 +126,7 @@ print("Testing set (flattened): ", X_test_flatten.shape)
 print("The size of the label of the training set: ", y_train.shape)
 print("The size of the label of the testing set: ", y_test.shape)
 \end{minted}
-\caption{Print the shape of the datasets}
+% \caption{Print the shape of the datasets}
 \label{listing:python}
 \end{listing}
 
@@ -156,7 +157,7 @@ label_counts_df = pd.DataFrame({
 print("Count of each label:")
 print(label_counts_df)
 \end{minted}
-\caption{Count the number of each category}
+% \caption{Count the number of each category}
 \label{listing:python}
 \end{listing}
 
@@ -190,7 +191,7 @@ print(label_counts_df)
 print("Other Statistics for the training set label:")
 print(pd.Series(y_train).describe())
 \end{minted}
-\caption{Print other statistics of the labels of the training set}
+% \caption{Print other statistics of the labels of the training set}
 \label{listing:python}
 \end{listing}
 
@@ -436,18 +437,16 @@ weighted avg       0.53      0.54      0.54     10000
 
 \end{minted}
 \subsection{Analysis and Final choice}
+
 \textbf{Before Feature Extraction}
-\\SVM: Moderate accuracy (~50\%), balanced but mediocre performance.
-\\KNN: Poor accuracy (~40\%), high variability across classes.
-\\RF: Slightly better (~46\%), but still struggles with some classes.
-\\
-\\
+\\SVM: Moderate accuracy (\textasciitilde50\%), balanced but mediocre performance.
+\\KNN: Poor accuracy (\textasciitilde40\%), high variability across classes.
+\\RF: Slightly better (\textasciitilde46\%), but still struggles with some classes.
+
 \textbf{After Feature Extraction}
-\\SVM: Best performance (75.5\% accuracy), consistent across all classes.
-\\KNN: Improved (~59\%), but suffers from extreme recall imbalances (e.g., some classes <20\%).
-\\RF: Minor improvement (~54\%), still lacks robustness in difficult classes.
-\\
-\\
+\\SVM: Best performance (75.5\%), consistent across all classes.
+\\KNN: Improved (\textasciitilde59\%), but suffers from extreme recall imbalances (e.g. some classes <20\%).
+\\RF: Minor improvement (\textasciitilde54\%), still lacks robustness in difficult classes.
 
 \subsection{Final Choice}
 We select SVM as our final classifier based on two key advantages:
@@ -467,7 +466,7 @@ We select SVM as our final classifier based on two key advantages:
         \item Margin-based optimization prevents overfitting
     \end{itemize}
 \end{itemize}
-And since SVM excels with enhanced features, adding weaker models (KNN/RF) would add noise, not value. So we didn't ensemble other weaker models.
+And since SVM excels with enhanced features, adding weaker models (KNN/RF) would add noise instead of improving the accuracy. So we didn't ensemble other weaker models.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -480,7 +479,10 @@ The overall structure of our classification model is as follows. We used data au
 
 \subsection{Feature Extraction}
 
-In the feature extraction process, we utilized several methods to extract features from the images. The following sections will detail the feature extraction methods we employed, including HOG, EOG, ORB, HIST, and LBP. We will also provide visualizations of the features extracted by each method.
+In the feature extraction process, we utilized several methods to extract features from the images. 
+The following sections will detail the feature extraction methods we have tested ,including HOG, EOG, ORB, HIST, LBP and HSV. 
+We will also provide visualizations of the features extracted by each method.
+After comparison, we selected HOG as the primary feature extraction method, supplemented by EOG, HIST and HSV methods.
 
 %------------------HOG---------------------
 \subsubsection{HOG (Histogram of oriented gradients)}
@@ -498,7 +500,7 @@ In our implementation, we firstly resize the image to 128x128 pixels, then split
 \begin{minted}{python}
 def HOG_extractor(image, target_size=(128, 128)):
     if len(image.shape) == 1:
-        image = image.reshape(32, 32, 3)  # Adjust this based on your original image shape
+        image = image.reshape(32, 32, 3) 
 
     resized_img = cv2.resize(image, target_size, interpolation=cv2.INTER_LINEAR)
     channels = cv2.split(resized_img)
@@ -575,7 +577,7 @@ def EOG_extractor(image, target_size=(32, 32)):
 Meanwhile, the effect of EOG feature extraction on resized images is not satisfactory, which reduces the final accuracy by 1\%, drop to 0.7655. 
 
 %--------------------ORB--------------------
-\subsubsection{ORB(Oriented FAST and Rotated BRIEF)}
+\subsubsection{ORB (Oriented FAST and Rotated BRIEF)}
 
 ORB is a fast and efficient feature extraction algorithm used in computer vision. It combines the FAST keypoint detector, which identifies keypoints based on intensity changes, with the BRIEF descriptor, which encodes local image patches into binary strings for matching. ORB introduces improvements such as orientation estimation for rotation invariance and a more robust descriptor through rotated BRIEF.
 
@@ -603,7 +605,8 @@ def ORB_extractor(image, target_size=(256, 256), n_features=500, fixed_length=10
 
     descriptors = descriptors.flatten()
     if len(descriptors) < fixed_length:
-        descriptors = np.pad(descriptors, (0, fixed_length - len(descriptors)), mode='constant')
+        descriptors = np.pad(descriptors, (0, fixed_length - len(descriptors)), 
+                                        mode='constant')
     elif len(descriptors) > fixed_length:
         descriptors = descriptors[:fixed_length]
 
@@ -613,7 +616,7 @@ def ORB_extractor(image, target_size=(256, 256), n_features=500, fixed_length=10
 However, the ORB feature extraction process has become a performance bottleneck, degrading the overall accuracy by around 1\%.
 
 %--------------------HIST--------------------
-\subsubsection{HIST(Histogram of Intensity and Surface Texture)}
+\subsubsection{HIST (Histogram of Intensity and Surface Texture)}
 
 The Histogram of Intensity and Surface Texture (HIST) feature extraction method quantifies spatial-intensity distributions and textural patterns by constructing multi-dimensional histograms across localized image regions. It employs adaptive binning to capture intensity gradients and co-occurrence statistics, coupled with spatial pooling to preserve structural context. Normalization techniques mitigate illumination variations while entropy-based weighting enhances discriminative power. This approach balances computational efficiency with robustness to affine transformations, making it particularly effective for texture classification, material recognition, and illumination-invariant object detection in computer vision application
 
@@ -632,7 +635,8 @@ def HIST_extractor(image, target_size=(256, 256), bins=(8, 8, 8)):
     resized_img = cv2.resize(image, target_size, interpolation=cv2.INTER_LINEAR)
     
     # Compute the color histogram for each channel (B, G, R)
-    hist = cv2.calcHist([resized_img], [0, 1, 2], None, bins, [0, 256, 0, 256, 0, 256])
+    hist = cv2.calcHist([resized_img], [0, 1, 2], 
+                        None, bins, [0, 256, 0, 256, 0, 256])
     # Normalize the histogram
     hist = cv2.normalize(hist, hist).flatten()
 
@@ -657,8 +661,9 @@ Our OpenCV-based implementation adopts uniform pattern mapping with histogram no
 \begin{minted}{python}
 def LBP_extractor(image, target_size=(64, 64)):
     if len(image.shape) == 1:
-        image = image.reshape(32, 32, 3)  # Adjust this based on your original image shape
-    resized_img = cv2.resize(image, target_size, interpolation=cv2.INTER_LINEAR)
+        image = image.reshape(32, 32, 3)
+    resized_img = cv2.resize(image, target_size, 
+                            interpolation=cv2.INTER_LINEAR)
 
     # Convert to grayscale
     gray_img = rgb2gray(resized_img)
@@ -671,7 +676,7 @@ def LBP_extractor(image, target_size=(64, 64)):
 While theoretically effective for texture characterization, our implementation exhibited around 1.3\% accuracy drop (from 0.7792 to 0.7668) when integrated into the feature ensemble (both deafult and uniform lbp), suggesting potential implementation challenges or feature conflicts.
 
 %-------------------SIFT---------------------
-\subsubsection{SIFT(Scale-Invariant Feature Transform)}
+\subsubsection{SIFT (Scale-Invariant Feature Transform)}
 
 SIFT detects and describes distinctive image features invariant to scale, rotation, and illumination by: 1) Identifying keypoints via Difference-of-Gaussians extrema in scale-space pyramids; 2) Assigning orientation-based descriptors using gradient orientation histograms in localized regions. Its 128-dimensional vectors enable robust matching for object recognition, 3D reconstruction, and image alignment despite viewpoint changes or partial occlusion.
 
@@ -839,6 +844,20 @@ To save more memory for the training process, we decided to remove the SIFT meth
 \subsubsection{HSV (Hue-Saturation-Value)}
 The Hue-Saturation-Value (HSV) color model is a key tool in computer vision for color-based analysis. It represents colors through three components: Hue (color type, 0°-360°), Saturation (color purity, 0\%-100\%), and Value (brightness, 0\%-100\%). Unlike RGB, HSV separates color information from intensity, making it more robust to lighting changes. This separation allows for effective color segmentation and object detection while maintaining intuitive color manipulation. HSV's perceptual alignment with human vision and its illumination invariance make it particularly useful for applications like skin detection and traffic sign recognition.
 
+\begin{minted}{python}
+def HSV_histogram_extractor(image, target_size=(64, 64), bins=(8, 8, 8)):
+
+if len(image.shape) == 1:
+    image = image.reshape(32, 32, 3) 
+resized_img = cv2.resize(image, target_size, interpolation=cv2.INTER_LINEAR)
+
+hsv_img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2HSV)
+hist = cv2.calcHist([hsv_img], [0, 1, 2], None,
+                        bins, [0, 180, 0, 256, 0, 256])
+hist = cv2.normalize(hist, hist).flatten()
+return hist
+\end{minted}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./img/hsv_output.png}
@@ -846,9 +865,15 @@ The Hue-Saturation-Value (HSV) color model is a key tool in computer vision for 
     \label{fig:example}
 \end{figure}
 
+After adding HSV, the accuracy increased  0.75\% compared to the single EOG + HOG + HIST method, from 0.7801 to 0.7876.
+
 
 \subsection{Data Augmentation}
 As we are restricted to using other data sets, we enhance the training set by processing the training images in the existing data set. In our final model, we applied horizontal flipping to each image, along with a 26×26 crop at the four corners and the center. For each image, there is a probability of 0.1 to perform a random local crop, with the crop size ranging from 24x24 to 32x32 and the crop position being random. Furthermore, there is a probability of 0.1 to apply a random image rotation, with a maximum angle of ±18 degrees. There is also a probability of 0.1 that random color jittering will occur. If color jittering is applied, the brightness, contrast, and hue are randomly adjusted within the range of 0.8 to 1.2.
+
+\subsubsection{26*26 Crop of Four Corners and Center}
+We adopted the data augmentation method from AlexNet, which involves cropping each image at its four corners and center to expand the dataset. This approach has been proven to improve model accuracy to some extent. Following this strategy, we also performed 26 * 26 four-corner and center cropping on our data, resulting in an increase in test accuracy from 0.7875 to 0.8010.
+
 \subsubsection{Horizontal Flip}
 Horizontal flipping is a simple yet effective augmentation technique. By mirroring the images along the vertical axis, we can create a new version of each image. This is particularly useful in scenarios where the orientation of objects is not fixed (e.g., animals, cars, etc.). Since many visual patterns remain unchanged under horizontal flipping, this technique helps our model learn to recognize features regardless of their orientation.
 
@@ -856,11 +881,11 @@ Horizontal flipping is a simple yet effective augmentation technique. By mirrori
 \begin{minted}{python}
 flipped_img = pil_img.transpose(Image.FLIP_LEFT_RIGHT)
 \end{minted}
-\caption{Horizontal Flips}
+% \caption{Horizontal Flips}
 \label{listing:python}
 \end{listing}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
         \includegraphics[width=\linewidth]{img/original_0.png}
@@ -889,11 +914,11 @@ def random_crop(image, crop_size):
     lower = upper + crop_size
     return image.crop((left, upper, right, lower))
 \end{minted}
-\caption{Random Crop}
+% \caption{Random Crop}
 \label{listing:python}
 \end{listing}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
         \includegraphics[width=\linewidth]{img/original_9.png}
@@ -914,11 +939,11 @@ def random_rotation(image, max_angle=18):
     angle = random.randint(-max_angle, max_angle)
     return image.rotate(angle)
 \end{minted}
-\caption{Random Rotation}
+% \caption{Random Rotation}
 \label{listing:python}
 \end{listing}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
         \includegraphics[width=\linewidth]{img/original_11.png}
@@ -956,11 +981,11 @@ def color_jitter(image, brightness=0.2, contrast=0.2, color=0.2):
     image = enhancer.enhance(factor)
     return image
 \end{minted}
-\caption{Random Color Jittering}
+% \caption{Random Color Jittering}
 \label{listing:python}
 \end{listing}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{minipage}{0.49\textwidth}
         \includegraphics[width=\linewidth]{img/original_2.png}
@@ -1022,7 +1047,7 @@ svm_model = make_pipeline(
 
 svm_model.fit(X_train_featured, y_train_aug)
 \end{minted}
-\caption{SVM}
+% \caption{SVM}
 \label{listing:python}
 \end{listing}
 
@@ -1070,20 +1095,22 @@ Classification Report on Validation Set:
 weighted avg       0.80      0.80      0.80     10000
 \end{minted}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{./img/leader_board.png}
     \caption{Kaggle Ranking}
     \label{fig:enter-label}
 \end{figure}
-\subsection{Future Work}
-Based on our confusion matrix analysis, the model demonstrates strong overall performance across most categories. However, there remains room for improvement in distinguishing between label 3 and label 5, as these classes exhibit higher misclassification rates compared to others. To address this, we could implement targeted strategies in subsequent iterations, such as dedicated data augmentation techniques for these two labels (e.g., synthetic sample generation, adversarial training, or class-specific preprocessing). Alternatively, we might explore architectural adjustments like attention mechanisms or loss function modifications to enhance feature discrimination for these challenging pairs. This focused refinement could further optimize the model's precision and robustness in real-world applications.
-\begin{figure}
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{img/confusion_matrix_output.png}
     \caption{Confusion Martix}
     \label{fig:enter-label}
 \end{figure}
+
+\subsection{Future Work}
+Based on our confusion matrix analysis, the model demonstrates strong overall performance across most categories. However, there remains room for improvement in distinguishing between label 3 and label 5, as these classes exhibit higher misclassification rates compared to others. To address this, we could implement targeted strategies in subsequent iterations, such as dedicated data augmentation techniques for these two labels (e.g., synthetic sample generation, adversarial training, or class-specific preprocessing). Alternatively, we might explore architectural adjustments like attention mechanisms or loss function modifications to enhance feature discrimination for these challenging pairs. This focused refinement could further optimize the model's precision and robustness in real-world applications.
 
 
 \end{document}
