@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{csv\PYGZus{}path}\PYG{p}{,} \PYG{n}{csv\PYGZus{}test\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}./data/train.csv\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}./data/test.csv\PYGZdq{}}
+\PYG{n}{img\PYGZus{}dir}\PYG{p}{,} \PYG{n}{img\PYGZus{}dir\PYGZus{}test} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}./data/train\PYGZus{}ims\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}./data/test\PYGZus{}ims\PYGZdq{}}
+\PYG{n}{data\PYGZus{}train} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{n}{csv\PYGZus{}path}\PYG{p}{)}
+\PYG{n}{data\PYGZus{}test} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{n}{csv\PYGZus{}test\PYGZus{}path}\PYG{p}{)}
+\PYG{n}{X\PYGZus{}train}\PYG{p}{,} \PYG{n}{y\PYGZus{}train}\PYG{p}{,} \PYG{n}{X\PYGZus{}test}\PYG{p}{,} \PYG{n}{y\PYGZus{}test} \PYG{o}{=} \PYG{p}{[],} \PYG{p}{[],} \PYG{p}{[],} \PYG{p}{[]}
+
+\PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{row} \PYG{o+ow}{in} \PYG{n}{data\PYGZus{}train}\PYG{o}{.}\PYG{n}{iterrows}\PYG{p}{():}
+    \PYG{n}{img\PYGZus{}path} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{img\PYGZus{}dir}\PYG{p}{,} \PYG{n}{row}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+    \PYG{n}{label} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{row}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])}
+    \PYG{n}{img} \PYG{o}{=} \PYG{n}{Image}\PYG{o}{.}\PYG{n}{open}\PYG{p}{(}\PYG{n}{img\PYGZus{}path}\PYG{p}{)}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}RGB\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{img} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{()}
+    \PYG{n}{X\PYGZus{}train}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}
+    \PYG{n}{y\PYGZus{}train}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{label}\PYG{p}{)}
+
+\PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{row} \PYG{o+ow}{in} \PYG{n}{data\PYGZus{}test}\PYG{o}{.}\PYG{n}{iterrows}\PYG{p}{():}
+    \PYG{n}{img\PYGZus{}path} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{img\PYGZus{}dir\PYGZus{}test}\PYG{p}{,} \PYG{n}{row}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+    \PYG{n}{label} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{row}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])}
+    \PYG{n}{img} \PYG{o}{=} \PYG{n}{Image}\PYG{o}{.}\PYG{n}{open}\PYG{p}{(}\PYG{n}{img\PYGZus{}path}\PYG{p}{)}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}RGB\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{img} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{()}
+    \PYG{n}{X\PYGZus{}test}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}
+    \PYG{n}{y\PYGZus{}test}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{label}\PYG{p}{)}
+
+\PYG{n}{X\PYGZus{}train}\PYG{p}{,} \PYG{n}{y\PYGZus{}train} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{X\PYGZus{}train}\PYG{p}{),} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{y\PYGZus{}train}\PYG{p}{)}
+\PYG{n}{X\PYGZus{}test}\PYG{p}{,} \PYG{n}{y\PYGZus{}test} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{X\PYGZus{}test}\PYG{p}{),} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{y\PYGZus{}test}\PYG{p}{)}
+\PYG{n}{X\PYGZus{}train\PYGZus{}flatten} \PYG{o}{=} \PYG{n}{X\PYGZus{}train}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{n}{X\PYGZus{}train}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{X\PYGZus{}test\PYGZus{}flatten} \PYG{o}{=} \PYG{n}{X\PYGZus{}test}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{n}{X\PYGZus{}test}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+\end{Verbatim}

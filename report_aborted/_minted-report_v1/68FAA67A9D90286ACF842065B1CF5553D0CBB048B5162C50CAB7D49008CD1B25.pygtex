@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Count the labels}
+\PYG{n}{count\PYGZus{}labels} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{unique}\PYG{p}{(}\PYG{n}{y\PYGZus{}train}\PYG{p}{,} \PYG{n}{return\PYGZus{}counts}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Create DataFrame}
+\PYG{n}{label\PYGZus{}counts\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}Label\PYGZdq{}}\PYG{p}{:} \PYG{n}{count\PYGZus{}labels}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],}
+    \PYG{l+s+s2}{\PYGZdq{}Count\PYGZdq{}}\PYG{p}{:} \PYG{n}{count\PYGZus{}labels}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+\PYG{p}{\PYGZcb{})}\PYG{o}{.}\PYG{n}{set\PYGZus{}index}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Label\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print DataFrame}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Count of each label:\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{label\PYGZus{}counts\PYGZus{}df}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{add}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{):}
+    \PYG{n}{res} \PYG{o}{=} \PYG{n}{x} \PYG{o}{+} \PYG{n}{y}
+    \PYG{n}{printf}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}x\PYGZcb{}}\PYG{l+s+s2}{ + }\PYG{l+s+si}{\PYGZob{}y\PYGZcb{}}\PYG{l+s+s2}{ = }\PYG{l+s+si}{\PYGZob{}res\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{res}
+
+\PYG{n}{x} \PYG{o}{=} \PYG{l+m+mi}{3}
+\PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{2}
+\PYG{n}{r} \PYG{o}{=} \PYG{n}{add}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{r}\PYG{p}{)}
+\end{Verbatim}

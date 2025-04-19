@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}The shape of the training set: \PYGZdq{}}\PYG{p}{,} \PYG{n}{X\PYGZus{}train}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}The shape of the testing set: \PYGZdq{}}\PYG{p}{,} \PYG{n}{X\PYGZus{}test}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Training set (flattened): \PYGZdq{}}\PYG{p}{,} \PYG{n}{X\PYGZus{}train\PYGZus{}flatten}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Testing set (flattened): \PYGZdq{}}\PYG{p}{,} \PYG{n}{X\PYGZus{}test\PYGZus{}flatten}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}The size of the label of the training set: \PYGZdq{}}\PYG{p}{,} \PYG{n}{y\PYGZus{}train}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}The size of the label of the testing set: \PYGZdq{}}\PYG{p}{,} \PYG{n}{y\PYGZus{}test}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\end{Verbatim}

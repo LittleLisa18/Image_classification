@@ -79,3 +79,68 @@ Classification Report:
     accuracy                           0.78     10000
    macro avg       0.78      0.78      0.78     10000
 weighted avg       0.78      0.78      0.78     10000
+
+------------------------------------------------------------
+HOG resized (256, 256)
+HOG features shape: (24000,)
+EOG features shape: (2048,)
+ORB features shape: (2000,)
+HIST features shape: (512,)
+
+hog_kwargs = {
+        "_winSize": (256, 256),
+        "_blockSize": (128, 128),
+        "_blockStride": (32, 32),
+        "_cellSize": (32, 32),
+        "_nbins": 20,
+        "_derivAperture": 1,
+        "_winSigma": -1,
+        "_histogramNormType": 0,
+        "_L2HysThreshold": 0.2,
+        "_gammaCorrection": True,
+        "_nlevels": 64,
+        "_signedGradient": True
+    }   
+
+SVM Validation Accuracy: 0.7799
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.83      0.82      1011
+           1       0.89      0.88      0.88      1051
+           2       0.69      0.71      0.70       985
+           3       0.58      0.59      0.59       983
+           4       0.73      0.76      0.75       968
+           5       0.69      0.64      0.66       975
+           6       0.83      0.82      0.83      1022
+           7       0.85      0.81      0.83       987
+           8       0.85      0.87      0.86       996
+           9       0.88      0.86      0.87      1022
+
+    accuracy                           0.78     10000
+   macro avg       0.78      0.78      0.78     10000
+weighted avg       0.78      0.78      0.78     10000
+
+
+HOG resized (1024, 1024)
+HOG features shape: (12000,)
+EOG features shape: (2048,)
+HIST features shape: (512,)
+SVM Validation Accuracy: 0.7784
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.84      0.82      1011
+           1       0.90      0.88      0.89      1051
+           2       0.68      0.70      0.69       985
+           3       0.57      0.58      0.58       983
+           4       0.73      0.75      0.74       968
+           5       0.69      0.66      0.67       975
+           6       0.84      0.81      0.83      1022
+           7       0.86      0.82      0.84       987
+           8       0.84      0.87      0.86       996
+           9       0.86      0.85      0.86      1022
+
+    accuracy                           0.78     10000
+   macro avg       0.78      0.78      0.78     10000
+weighted avg       0.78      0.78      0.78     10000

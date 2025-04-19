@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{count\PYGZus{}labels} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{unique}\PYG{p}{(}\PYG{n}{y\PYGZus{}train}\PYG{p}{,} \PYG{n}{return\PYGZus{}counts}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{n}{label\PYGZus{}counts\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}Label\PYGZdq{}}\PYG{p}{:} \PYG{n}{count\PYGZus{}labels}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],}
+    \PYG{l+s+s2}{\PYGZdq{}Count\PYGZdq{}}\PYG{p}{:} \PYG{n}{count\PYGZus{}labels}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+\PYG{p}{\PYGZcb{})}\PYG{o}{.}\PYG{n}{set\PYGZus{}index}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Label\PYGZdq{}}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}example\PYGZus{}images}\PYG{p}{(}\PYG{n}{label}\PYG{p}{,} \PYG{n}{num\PYGZus{}examples}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{):}
+    \PYG{n}{indices} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{where}\PYG{p}{(}\PYG{n}{y\PYGZus{}train} \PYG{o}{==} \PYG{n}{label}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n}{selected\PYGZus{}indices} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{choice}\PYG{p}{(}\PYG{n}{indices}\PYG{p}{,}
+        \PYG{n}{size}\PYG{o}{=}\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{num\PYGZus{}examples}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{indices}\PYG{p}{)),} \PYG{n}{replace}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+    \PYG{n}{example\PYGZus{}images} \PYG{o}{=} \PYG{p}{[}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{img\PYGZus{}dir}\PYG{p}{,} \PYG{n}{data\PYGZus{}train}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{])}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{selected\PYGZus{}indices}\PYG{p}{]}
+    \PYG{k}{return} \PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{([}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}img src=\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{img}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZdq{} width=\PYGZdq{}50\PYGZdq{} /\PYGZgt{}\PYGZsq{}}
+        \PYG{k}{for} \PYG{n}{img} \PYG{o+ow}{in} \PYG{n}{example\PYGZus{}images}\PYG{p}{])}
+
+\PYG{n}{label\PYGZus{}counts\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Example Images\PYGZdq{}}\PYG{p}{]} \PYG{o}{=}
+\PYG{n}{label\PYGZus{}counts\PYGZus{}df}\PYG{o}{.}\PYG{n}{index}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{get\PYGZus{}example\PYGZus{}images}\PYG{p}{)}
+\PYG{n}{HTML}\PYG{p}{(}\PYG{n}{label\PYGZus{}counts\PYGZus{}df}\PYG{o}{.}\PYG{n}{to\PYGZus{}html}\PYG{p}{(}\PYG{n}{escape}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{))}
+\end{Verbatim}
